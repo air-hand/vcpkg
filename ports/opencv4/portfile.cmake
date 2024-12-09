@@ -353,7 +353,8 @@ vcpkg_cmake_configure(
         -DX86=${TARGET_IS_X86}
         -DARM=${TARGET_IS_ARM}
         ###### use c++17 to enable features that fail with c++11 (halide, protobuf, etc.)
-        -DCMAKE_CXX_STANDARD=17
+        # WIP: respect the user's choice of C++ standard
+#        -DCMAKE_CXX_STANDARD=17
         ###### ocv_options
         -DINSTALL_TO_MANGLED_PATHS=OFF
         -DOpenCV_INSTALL_BINARIES_PREFIX=
