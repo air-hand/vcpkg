@@ -6,13 +6,19 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO stephenberry/glaze
     REF "v${VERSION}"
-    SHA512 0db97a633e532aabbd597005fd210f78acd42551a154e51aac1d7980ddff5afa38defc59931b11fd7147178e78d986812c7e0c54ff3c3cbf63092f17dd3ceba8
+    SHA512 9b4782b2554049a6eb1c5b46118bb1aa90cbd31bdfbaab76072374027f73c20fa7918231ef0bb7e7d6cdaab1949b2273fa7d5d9e336d5f483876a559a4076722
     HEAD_REF main
+)
+
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        ssl     glaze_ENABLE_SSL
 )
 
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
+        ${FEATURE_OPTIONS}
         -Dglaze_DEVELOPER_MODE=OFF
         -Dglaze_BUILD_EXAMPLES=OFF
 )
