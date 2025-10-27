@@ -24,6 +24,7 @@ vcpkg_from_github(
       0019-opencl-kernel.patch
       0020-fix-narrow-filesystem.diff
       0021-fix-qt-gen-def.patch
+      0021-cuda-standard.patch
 )
 
 vcpkg_find_acquire_program(PKGCONFIG)
@@ -165,6 +166,17 @@ if("cuda" IN_LIST FEATURES)
     FILENAME "opencv-cache/nvidia_optical_flow/a73cd48b18dcc0cc8933b30796074191-edb50da3cf849840d680249aa6dbef248ebce2ca.zip"
     SHA512 12d655ac9fcfc6df0186daa62f7185dadd489f0eeea25567d78c2b47a9840dcce2bd03a3e9b3b42f125dbaf3150f52590ea7597dc1dc8acee852dc0aed56651e
   )
+  if(CMAKE_CUDA_ARCHITECTURES)
+    list(APPEND ADDITIONAL_BUILD_FLAGS
+      "-DCMAKE_CUDA_ARCHITECTURES=\"${CMAKE_CUDA_ARCHITECTURES}\""
+    )
+  endif()
+  if(CMAKE_CUDA_STANDARD)
+    list(APPEND ADDITIONAL_BUILD_FLAGS
+      "-DCMAKE_CUDA_STANDARD=${CMAKE_CUDA_STANDARD}"
+      "-DCMAKE_CUDA_STANDARD_REQUIRED=ON"
+    )
+  endif()
 endif()
 
 if(VCPKG_TARGET_IS_ANDROID AND (VCPKG_TARGET_ARCHITECTURE MATCHES "^arm"))
@@ -357,7 +369,8 @@ vcpkg_cmake_configure(
         -DX86=${TARGET_IS_X86}
         -DARM=${TARGET_IS_ARM}
         ###### use c++17 to enable features that fail with c++11 (halide, protobuf, etc.)
-        -DCMAKE_CXX_STANDARD=17
+        # WIP: respect the user's choice of C++ standard
+#        -DCMAKE_CXX_STANDARD=17
         ###### ocv_options
         -DINSTALL_TO_MANGLED_PATHS=OFF
         -DOpenCV_INSTALL_BINARIES_PREFIX=
