@@ -23,8 +23,8 @@ vcpkg_from_github(
       0017-fix-flatbuffers.patch
       0019-opencl-kernel.patch
       0020-fix-narrow-filesystem.diff
-      0021-cuda-standard.patch
       0021-fix-qt-gen-def.patch
+      1000-cuda-standard.patch
 )
 
 vcpkg_find_acquire_program(PKGCONFIG)
