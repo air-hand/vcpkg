@@ -30,7 +30,7 @@ vcpkg_from_github(
       0021-fix-qt-gen-def.patch
       0022-android-use-vcpkg-cpu-features.patch
       0023-ffmpeg8-support.patch
-      1000-cuda-standard.patch
+      1000-cuda-std-and-vs2026.patch
       "${PATCH1_FILE}"
 )
 # Disallow accidental build of vendored copies
