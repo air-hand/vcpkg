@@ -40,6 +40,7 @@ vcpkg_from_github(
       0024-openvino-const-tensor-data.patch
       0025-fix-cuda-host-std-flag-forwarding.patch
       0026-cuda-msvc-preprocessor.patch
+      1000-cuda-win-llvm.patch
       "${PATCH1_FILE}"
       "${CUDA_13_SUPPORT_PATCH}"
 )
@@ -333,7 +334,7 @@ if("ipp" IN_LIST FEATURES)
     set(key "linux-${VCPKG_TARGET_ARCHITECTURE}")
   endif()
 
-  # For convenient updates, use 
+  # For convenient updates, use
   # vcpkg install opencv4[core,ipp] --cmake-args=-DVCPKG_OPENCV4_UPDATE=1
   if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64" OR VCPKG_OPENCV4_UPDATE)
     if(VCPKG_TARGET_IS_APPLE OR VCPKG_OPENCV4_UPDATE)

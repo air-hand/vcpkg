@@ -1,0 +1,45 @@
+diff --git a/cmake/OpenCVDetectCUDA.cmake b/cmake/OpenCVDetectCUDA.cmake
+index c2179da804..76e21c925e 100644
+--- a/cmake/OpenCVDetectCUDA.cmake
++++ b/cmake/OpenCVDetectCUDA.cmake
+@@ -3,10 +3,10 @@ if((WIN32 AND NOT MSVC) OR OPENCV_CMAKE_FORCE_CUDA)
+   return()
+ endif()
+ 
+-if((NOT UNIX AND CV_CLANG) OR OPENCV_CMAKE_FORCE_CUDA)
+-  message(STATUS "CUDA: Compilation is disabled (due to Clang unsupported on your platform).")
+-  return()
+-endif()
++#if((NOT UNIX AND CV_CLANG) OR OPENCV_CMAKE_FORCE_CUDA)
++#  message(STATUS "CUDA: Compilation is disabled (due to Clang unsupported on your platform).")
++#  return()
++#endif()
+ 
+ #set(OPENCV_CMAKE_CUDA_DEBUG 1)
+ 
+diff --git a/cmake/OpenCVDetectCUDALanguage.cmake b/cmake/OpenCVDetectCUDALanguage.cmake
+index bc40134180..ed596be508 100644
+--- a/cmake/OpenCVDetectCUDALanguage.cmake
++++ b/cmake/OpenCVDetectCUDALanguage.cmake
+@@ -20,10 +20,10 @@ if((WIN32 AND NOT MSVC) OR OPENCV_CMAKE_FORCE_CUDA)
+   return()
+ endif()
+ 
+-if((NOT UNIX AND CV_CLANG) OR OPENCV_CMAKE_FORCE_CUDA)
+-  message(STATUS "CUDA: Compilation is disabled (due to Clang unsupported on your platform).")
+-  return()
+-endif()
++#if((NOT UNIX AND CV_CLANG) OR OPENCV_CMAKE_FORCE_CUDA)
++#  message(STATUS "CUDA: Compilation is disabled (due to Clang unsupported on your platform).")
++#  return()
++#endif()
+ 
+ #set(OPENCV_CMAKE_CUDA_DEBUG 1)
+ 
+@@ -153,4 +153,4 @@ endmacro()
+ if(HAVE_CUDA)
+   ocv_apply_cuda_stub_workaround("${CUDA_cuda_driver_LIBRARY}")
+   ocv_check_cuda_delayed_load("${cuda_toolkit_root_dir}")
+-endif()
+\ No newline at end of file
++endif()
